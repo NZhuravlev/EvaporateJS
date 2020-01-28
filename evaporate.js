@@ -440,6 +440,19 @@
     this.evaporatingCount = Math.max(0, this.evaporatingCount + incr);
     this.config.evaporateChanged(this, this.evaporatingCount);
   };
+  Evaporate.prototype.overrideConfig = function (newConfig) {
+    IMMUTABLE_OPTIONS.forEach(function (a) { delete newConfig[a]; });
+    this.config = extend(this.config, newConfig);
+    this.filesInProcess.forEach(function(file) {
+      extend(file.con, newConfig);
+    });
+    this.pendingFiles.forEach(function(file) {
+      extend(file.con, newConfig);
+    });
+    this.queuedFiles.forEach(function(file) {
+      extend(file.con, newConfig);
+    });
+  };
 
 
   function FileUpload(file, con, evaporate) {

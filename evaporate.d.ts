@@ -14,7 +14,7 @@ declare class Evaporate {
     pause(file_key?: string, options?: object): Promise<undefined[]>;
     resume(file_key?: string): Promise<undefined[]>;
     cancel(file_key?: string): Promise<undefined[]>;
-    overrideConfig (newConfig: Evaporate.OverrideOptions);
+    overrideConfig (newConfig: Evaporate.OverrideOptions): void;
 }
 
 declare namespace Evaporate {
